@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-const OtherPage = () => {
+const About = () => {
   return (
     <div>
-      <p>I'm another page!</p>
+      <p>About Us!</p>
       <br />
       <Link to="/">Go back to the home screen</Link>
     </div>
   );
 };
 
-export default OtherPage;
+export default About;

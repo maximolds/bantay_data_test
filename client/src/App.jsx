@@ -1,7 +1,10 @@
 import { Fragment } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import OtherPage from "./OtherPage";
+import About from "./About";
+import LoginComponent from "./LoginComponent";
+import RegistrationComponent from "./RegistrationComponent";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 import MainComponent from "./MainComponent";
 
 function App() {
@@ -9,15 +12,21 @@ function App() {
     <Router>
       <Fragment>
         <header className="header">
-          <div>This is a multicontainer application</div>
-          <Link to="/">Home</Link>
-          <Link to="/otherpage">Other page</Link>
+          <div>Bantay Data WebAPP</div>
+          <Link to="/registration">Register</Link>
         </header>
         <div className="main">
-          <Routes>
-            <Route path="/" element={<MainComponent />} />
-            <Route path="/otherpage" element={<OtherPage />} />
-          </Routes>
+        <Routes>
+   {/* Public routes */}
+   <Route path="/login" element={<LoginComponent />} />
+   <Route path="/registration" element={<RegistrationComponent />} />
+   
+   {/* Protected routes */}
+   <Route element={<ProtectedRoutes />}>
+     <Route path="/" element={<MainComponent />} />
+     <Route path="/about" element={<About />} />
+   </Route>
+</Routes>
         </div>
       </Fragment>
     </Router>

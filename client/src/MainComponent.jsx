@@ -1,60 +1,89 @@
-import { useCallback, useState, useEffect } from "react";
-import axios from "axios";
-import "./MainComponent.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
 
 const MainComponent = () => {
-  const [values, setValues] = useState([]);
-  const [value, setValue] = useState("");
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate for logout
 
-  // Fetch all numbers from the server
-  const getAllNumbers = useCallback(async () => {
-    try {
-      const { data } = await axios.get("/api/values/all");
-      setValues(data.rows.map(row => row.number)); // Adjust if your API response format is different
-    } catch (error) {
-      console.error("Error fetching numbers:", error);
-    }
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('api/users/all');
+        setUsers(response.data);
+      } catch (err) {
+        console.error("Error fetching users:", err);
+        setError("Failed to fetch users.");
+      }
+    };
+
+    fetchUsers();
   }, []);
 
-  // Save a number to the server
-  const saveNumber = useCallback(
-    async (event) => {
-      event.preventDefault();
+  // Handle logout function
+  const handleLogout = () => {
+    // Clear localStorage upon logout
+    localStorage.removeItem("isAuthenticated");
+    localStorage.removeItem("username");
 
-      try {
-        await axios.post("/api/values", { value });
-        setValue("");
-        getAllNumbers();
-      } catch (error) {
-        console.error("Error saving number:", error);
-      }
-    },
-    [value, getAllNumbers]
-  );
+    // Redirect to the login page
+    navigate("/login");
+  };
 
-  // Fetch numbers when the component mounts
-  useEffect(() => {
-    getAllNumbers();
-  }, [getAllNumbers]);
+  // Handle clear all data function
+  const handleClearAllData = async () => {
+    try {
+      await axios.delete('api/clear-data'); // Call backend route to clear data
+      setUsers([]); // Clear users from state after successful deletion
+      localStorage.removeItem("isAuthenticated"); // Remove authentication status
+      localStorage.removeItem("username"); // Remove username from local storage
+      navigate("/login"); // Navigate to login after clearing data
+    } catch (err) {
+      console.error("Error clearing data:", err);
+      setError("Failed to clear data.");
+    }
+  };
 
   return (
-    <div>
-      <button onClick={getAllNumbers}>Get all numbers</button>
-      <br />
-      <span className="title">Values</span>
-      <div className="values">
-        {values.map((val, index) => (
-          <div key={index} className="value">{val}</div>
-        ))}
-      </div>
-      <form className="form" onSubmit={saveNumber}>
-        <label>Enter your value: </label>
-        <input
-          value={value}
-          onChange={event => setValue(event.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+    <div style={{ padding: '20px' }}>
+      {/* Navbar */}
+      <nav style={{ marginBottom: '20px' }}>
+        <Link to="/about" style={{ marginRight: '10px' }}>About Us</Link>
+        <Link to="/register" style={{ marginRight: '10px' }}>Register</Link>
+        <button onClick={handleLogout} style={{ marginLeft: '10px' }}>
+          Logout
+        </button>
+        <button onClick={handleClearAllData} style={{ marginLeft: '10px' }}>
+          Clear All Data
+        </button>
+      </nav>
+
+      <h1>Users List</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th style={{ border: '1px solid #ccc', padding: '10px' }}>ID</th>
+            <th style={{ border: '1px solid #ccc', padding: '10px' }}>Username</th>
+            <th style={{ border: '1px solid #ccc', padding: '10px' }}>Shift</th>
+            <th style={{ border: '1px solid #ccc', padding: '10px' }}>Team</th>
+            <th style={{ border: '1px solid #ccc', padding: '10px' }}>Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user.id}>
+              <td style={{ border: '1px solid #ccc', padding: '10px' }}>{user.id}</td>
+              <td style={{ border: '1px solid #ccc', padding: '10px' }}>{user.username}</td>
+              <td style={{ border: '1px solid #ccc', padding: '10px' }}>{user.shift}</td>
+              <td style={{ border: '1px solid #ccc', padding: '10px' }}>{user.team}</td>
+              <td style={{ border: '1px solid #ccc', padding: '10px' }}>{new Date(user.created_at).toLocaleString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
