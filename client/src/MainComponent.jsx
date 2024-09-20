@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom'; // Import Link for navigation
 
-
 const MainComponent = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
