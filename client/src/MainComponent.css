@@ -1,9 +1,52 @@
+/* Import the Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 /* General body and text styling */
-body {
-  background-color: #1c1c1c;
-  color: #fff;
-  font-family: "Poppins", sans-serif;
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; /* Ensure full height */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Define variables for both dark and light mode */
+:root {
+  --bg-color: #f5f5f5; /* Light background */
+  --text-color: #000; /* Dark text for light mode */
+  --legend-container-bg-color: #fff; /* White container for light mode */
+  --legend-text-color: #000; /* Black text for light mode */
+  
+  /* Light mode colors */
+  --morning-color: #00bfff; /* Light blue for morning shift */
+  --mid-color: #ffa500; /* Orange for mid shift */
+  --night-color: #9400d3; /* Purple for night shift */
+  --day-off-color: #f0e68c; /* Khaki for day off */
+  --half-day-color: #87ceeb; /* Sky blue for half day */
+  --sick-day-color: #ff6347; /* Tomato for sick day */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1c1c1c; /* Dark background */
+    --text-color: #fff; /* Light text for dark mode */
+    --legend-container-bg-color: #000; /* Black container for dark mode */
+    --legend-text-color: #fff; /* White text for dark mode */
+    
+    /* Dark mode colors */
+    --morning-color: #1e90ff; /* Darker blue for morning shift */
+    --mid-color: #ff8c00; /* Darker orange for mid shift */
+    --night-color: #8a2be2; /* Darker purple for night shift */
+    --day-off-color: #d2b48c; /* Darker khaki for day off */
+    --half-day-color: #4682b4; /* Darker sky blue for half day */
+    --sick-day-color: #ff4500; /* Darker tomato for sick day */
+  }
 }
 
 /* Navbar styling */
@@ -27,30 +70,44 @@ body {
 .navbar button:hover {
   background-color: white;
   color: #04b400;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Changed to white shadow */
 }
 
 /* Main container and content layout */
 .main-container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure full height of the container */
+  background-color: inherit;
+  padding-bottom: 0; /* Remove any potential extra padding at the bottom */
 }
 
 .content {
   display: flex;
   width: 100%;
-  justify-content: space-between; /* Distributes the table and calendar evenly */
+  justify-content: center; /* Align the table and legend centrally */
+  gap: 20px; /* Space between table and legend */
+  max-width: 1200px; /* Limit the maximum width of the content */
+  padding: 20px; /* Add padding for better spacing */
 }
 
+/* Table and legend containers aligned side by side */
 .table-container {
-  flex: 3;
-  margin-right: 20px;
+  flex: 3; /* Table takes 3/4 of the width */
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.calendar-container {
-  flex: 1;
-  background-color: rgba(255, 255, 255, 0.1);
+.legend-container {
+  flex: 1; /* Legend takes 1/4 of the width */
+  max-width: 200px; /* Maximum width of the legend */
+  background-color: var(--legend-container-bg-color); /* White in light mode, black in dark mode */
+  color: var(--legend-text-color); /* Black text in light mode, white text in dark mode */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -93,8 +150,14 @@ tr:hover {
 }
 
 /* Headings styling */
-h1, h2 {
-  color: #fff;
+h1, h2, h4  {
+  color: var(--text-color);
+}
+
+.legend-title {
+  font-size: 1.2em; /* Adjust to desired size */
+  color: var(--text-color); /* Ensure it matches the theme */
+  margin-bottom: 10px; /* Space below the title */
 }
 
 /* Legend container and items styling */
@@ -117,29 +180,67 @@ h1, h2 {
   border-radius: 4px;
 }
 
-/* Shift colors */
 .morning {
-  background-color: #00bfff; /* Light blue for morning shift */
+  background-color: var(--morning-color);
 }
 
 .mid {
-  background-color: #ffa500; /* Orange for mid shift */
+  background-color: var(--mid-color);
 }
 
 .night {
-  background-color: #9400d3; /* Purple for night shift */
+  background-color: var(--night-color);
 }
 
 .day-off {
-  background-color: #f0e68c; /* Khaki for day off */
+  background-color: var(--day-off-color);
 }
 
 .half-day {
-  background-color: #87ceeb; /* Sky blue for half day */
+  background-color: var(--half-day-color);
 }
 
 .sick-day {
-  background-color: #ff6347; /* Tomato for sick day */
+  background-color: var(--sick-day-color);
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+body.light-mode .legend-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .legend-title,
+body.light-mode .legend li {
+  color: #000; /* Text color in light mode */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .legend-container {
+  background-color: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5); /* Changed to white shadow */
+}
+
+body.dark-mode .legend-title,
+body.dark-mode .legend li {
+  color: #fff; /* Text color in dark mode */
+}
+
+/* Label styling */
+label {
+  color: var(--text-color);
+  display: block; /* Ensure labels are block elements for alignment */
+  margin-bottom: 8px; /* Space below labels */
 }
 
 /* Additional styling for table buttons under header */
@@ -160,5 +261,21 @@ h1, h2 {
 .table-buttons button:hover {
   background-color: white;
   color: #04b400;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Changed to white shadow */
+}
+
+/* Mobile Responsive Design */
+@media screen and (max-width: 768px) {
+  .legend-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+}
+
+/* Smaller Mobile Screens */
+@media screen and (max-width: 480px) {
+  .legend-container {
+    max-width: 100%;
+    padding: 15px;
+  }
 }

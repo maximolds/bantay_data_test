@@ -71,7 +71,9 @@ body.dark-mode .register-link a {
   text-align: center;
   color: white;
   transition: all 0.3s ease;
+  margin-top: 50px; /* Added margin top */
 }
+
 
 /* Welcome Header */
 h1 {

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom"; // Import useNavigate and Link
 import "./LoginComponent.css"; // Optional: Add your styles
+import logo from "./assets/logo/Untitleddesign.png"; // Import your image
 
 const LoginComponent = () => {
   const [username, setUsername] = useState("");
@@ -35,7 +36,10 @@ const LoginComponent = () => {
 
   return (
     <div className="login-component">
-      <h2>Login</h2>
+      <h2>
+        <img src={logo} alt="Logo" style={{ width: "30px", marginRight: "10px" }} />
+        Login
+      </h2>
       {errorMessage && <div className="error">{errorMessage}</div>}
       <form onSubmit={handleLogin} className="login-form">
         <label htmlFor="username">Username:</label>

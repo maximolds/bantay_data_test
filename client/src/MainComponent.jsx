@@ -76,15 +76,15 @@ const MainComponent = () => {
   const getTeamColor = (team) => {
     switch (team) {
       case 'A1':
-        return '#ff7f7f'; // Light red for Team 1
+        return '#ff7f7f'; // Light red for Team A1
       case 'A2':
-        return '#7fffd4'; // Aquamarine for Team 2
+        return '#7fffd4'; // Aquamarine for Team A2
       case 'B1':
-        return '#ffdf00'; // Gold for Team 3
+        return '#ffdf00'; // Gold for Team B1
       case 'B2':
-        return '#add8e6'; // Light blue for Team 4
+        return '#add8e6'; // Light blue for Team B2
       case 'B3':
-        return '#90ee90'; // Light green for Team 5
+        return '#90ee90'; // Light green for Team B3
       default:
         return 'transparent'; // Default background color
     }
@@ -95,13 +95,13 @@ const MainComponent = () => {
       <div className="content">
         <div className="table-container">
           <h1>Shift Rotation Schedule</h1>
-          
+
           {/* Buttons placed below header and above table */}
           <div className="table-buttons">
             <button onClick={handleAddData}>Add Data</button>
             <button onClick={handleClearAllData} style={{ marginLeft: '10px' }}>Clear All Data</button>
           </div>
-          
+
           {error && <p className="error">{error}</p>}
 
           <table>
@@ -119,9 +119,7 @@ const MainComponent = () => {
                 <tr key={user.id}>
                   <td>{user.id}</td>
                   <td>{user.username}</td>
-                  {/* Apply color only to the Shift column */}
                   <td style={{ backgroundColor: getShiftColor(user.shift) }}>{user.shift}</td>
-                  {/* Apply color only to the Team column */}
                   <td style={{ backgroundColor: getTeamColor(user.team) }}>{user.team}</td>
                   <td>{new Date(user.created_at).toLocaleString()}</td>
                 </tr>
@@ -130,41 +128,24 @@ const MainComponent = () => {
           </table>
         </div>
 
-        {/* Shift and Team Legend */}
-        <div className="calendar-container">
+        {/* Legend Section */}
+        <div className="legend-container">
           <h2>Legend</h2>
+
+          <h2 className="legend-title">Shift Colors</h2>
           <ul className="legend">
+            <li><span className="color-box morning"></span> Morning (6am - 3pm)</li>
+            <li><span className="color-box mid"></span> Mid (2pm - 10pm)</li>
+            <li><span className="color-box night"></span> Night (10pm - 7am)</li>
+          </ul>
 
-          <h3>Shift Colors</h3>
-            {/* Shift Legend */}
-            <li>
-              <span className="color-box morning"></span> Morning (6am - 3pm)
-            </li>
-            <li>
-              <span className="color-box mid"></span> Mid (2pm - 10pm)
-            </li>
-            <li>
-              <span className="color-box night"></span> Night (10pm - 7am)
-            </li>
-           
-
-            {/* Team Legend */}
-            <h3>Team Colors</h3>
-            <li>
-              <span className="color-box" style={{ backgroundColor: '#ff7f7f' }}></span> Team 1
-            </li>
-            <li>
-              <span className="color-box" style={{ backgroundColor: '#7fffd4' }}></span> Team 2
-            </li>
-            <li>
-              <span className="color-box" style={{ backgroundColor: '#ffdf00' }}></span> Team 3
-            </li>
-            <li>
-              <span className="color-box" style={{ backgroundColor: '#add8e6' }}></span> Team 4
-            </li>
-            <li>
-              <span className="color-box" style={{ backgroundColor: '#90ee90' }}></span> Team 5
-            </li>
+          <h2 className="legend-title">Team Colors</h2>
+          <ul className="legend">
+            <li><span className="color-box" style={{ backgroundColor: '#ff7f7f' }}></span> Team A1</li>
+            <li><span className="color-box" style={{ backgroundColor: '#7fffd4' }}></span> Team A2</li>
+            <li><span className="color-box" style={{ backgroundColor: '#ffdf00' }}></span> Team B1</li>
+            <li><span className="color-box" style={{ backgroundColor: '#add8e6' }}></span> Team B2</li>
+            <li><span className="color-box" style={{ backgroundColor: '#90ee90' }}></span> Team B3</li>
           </ul>
         </div>
       </div>

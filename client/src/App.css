@@ -3,9 +3,8 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%; /* Full height of the viewport */
-  font-family: Arial, sans-serif; /* Ensure consistent font styling */
-  box-sizing: border-box;
+  height: 100%; /* Ensure full height */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 body.light-mode {
@@ -25,16 +24,25 @@ body.dark-mode {
 
 .app-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensure full height even with smaller content */
-  background-color: inherit; /* Inherit background based on light or dark mode */
+  min-height: 100vh; /* This ensures full height without extra scrolling space */
+  background-color: inherit;
+  padding-bottom: 0; /* Remove any potential extra padding at the bottom */
 }
 
 .main {
   margin-top: 80px; /* Adjust according to header height */
   padding: 20px; /* Add padding if needed */
   width: 100%; /* Ensure full width */
+  text-align: center;
+}
+
+
+footer {
+  flex-shrink: 0; /* Make sure the footer doesn't push the content up */
+  width: 100%;
   text-align: center;
 }
 
