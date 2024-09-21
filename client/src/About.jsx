@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import emmanImage from './assets/emman.jpg';
+import kharloImage from './assets/kharlo.jpg'
 
 const teamMembers = [
   {
@@ -18,8 +19,8 @@ const teamMembers = [
   {
     name: "Kharlo",
     role: "Monitoring, Alerting & Grafana Specialist",
-    linkedin: "https://www.linkedin.com/in/kharlo-profile",
-    image: emmanImage,
+    linkedin: "https://www.linkedin.com/in/kharlo-valencia-33382b24b/",
+    image: kharloImage,
   },
   {
     name: "Emman",
