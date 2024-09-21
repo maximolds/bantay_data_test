@@ -228,7 +228,7 @@ body.dark-mode {
 
 body.dark-mode .legend-container {
   background-color: rgba(0, 0, 0, 0.85);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5); /* Changed to white shadow */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Changed to white shadow */
 }
 
 body.dark-mode .legend-title,

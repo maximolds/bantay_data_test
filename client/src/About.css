@@ -1,0 +1,89 @@
+/* src/components/About.css */
+
+.about-container {
+    background-color: #000; /* Black background for space vibe */
+    color: #0f0; /* Green text for space-themed color */
+    padding: 50px 20px;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .team-name {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: #0f0;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  
+  .team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+  }
+  
+  .team-member {
+    background: rgba(0, 128, 0, 0.2); /* Greenish background with transparency */
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .team-member:hover {
+    transform: scale(1.05); /* Slightly enlarges the card on hover */
+  }
+  
+  .member-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #0f0; /* Green border around the image */
+  }
+  
+  .member-name {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #0f0;
+  }
+  
+  .member-role {
+    font-size: 1.1em;
+    color: #aaa; /* Light gray for contrast */
+    margin-bottom: 15px;
+  }
+  
+  .linkedin-link {
+    color: #0f0;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+  }
+  
+  .linkedin-link:hover {
+    text-decoration: underline;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-top: 40px;
+    color: #0f0;
+    text-decoration: none;
+    font-size: 1.2em;
+    border: 2px solid #0f0;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+  
+  .back-link:hover {
+    background-color: #0f0;
+    color: #000; /* Black text when hovering */
+  }
+  

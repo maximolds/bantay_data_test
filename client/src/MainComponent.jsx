@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './MainComponent.css';
-import bantayImage from './assets/bantay.png'; // Adjust the path as necessary
+import bantayImage from './assets/bantay1.png'; // Adjust the path as necessary
 
 const MainComponent = () => {
   const [users, setUsers] = useState([]);
