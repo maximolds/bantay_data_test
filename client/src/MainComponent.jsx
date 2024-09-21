@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './MainComponent.css';
+import bantayImage from './assets/bantay.png'; // Adjust the path as necessary
 
 const MainComponent = () => {
   const [users, setUsers] = useState([]);
@@ -63,40 +64,62 @@ const MainComponent = () => {
   const getShiftColor = (shift) => {
     switch (shift) {
       case 'MORNING':
-        return '#87ceeb'; // Sky blue for morning shift
+        return '#87ceeb';
       case 'MID':
-        return '#ffa500'; // Orange for mid shift
+        return '#ffa500';
       case 'NIGHT':
-        return '#9400d3'; // Purple for night shift
+        return '#9400d3';
       default:
-        return 'transparent'; // Default background color
+        return 'transparent';
     }
   };
 
   const getTeamColor = (team) => {
     switch (team) {
       case 'A1':
-        return '#ff7f7f'; // Light red for Team A1
+        return '#ff7f7f';
       case 'A2':
-        return '#7fffd4'; // Aquamarine for Team A2
+        return '#7fffd4';
       case 'B1':
-        return '#ffdf00'; // Gold for Team B1
+        return '#ffdf00';
       case 'B2':
-        return '#add8e6'; // Light blue for Team B2
+        return '#add8e6';
       case 'B3':
-        return '#90ee90'; // Light green for Team B3
+        return '#90ee90';
       default:
-        return 'transparent'; // Default background color
+        return 'transparent';
     }
   };
 
   return (
     <div className="main-container">
+      {/* Header Container */}
+      <div
+    className="header-container"
+    style={{
+      margin: '200px 0 30px 0', // Set top margin to 200px
+      backgroundImage: `url(${bantayImage})`, // Set the image as the background
+      backgroundSize: 'cover', // Cover the entire area
+      backgroundPosition: 'center', // Emphasize the lower part of the image
+      color: 'white',
+      textAlign: 'center',
+      padding: '20px',
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '200px', // Height of the header
+      borderRadius: '50px', // Round corners
+      overflow: 'hidden', // Hide overflow if needed
+      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.7)', // Add black shadow
+    }}
+  >
+  </div>
+
       <div className="content">
         <div className="table-container">
           <h1>Shift Rotation Schedule</h1>
 
-          {/* Buttons placed below header and above table */}
           <div className="table-buttons">
             <button onClick={handleAddData}>Add Data</button>
             <button onClick={handleClearAllData} style={{ marginLeft: '10px' }}>Clear All Data</button>
@@ -131,7 +154,6 @@ const MainComponent = () => {
         {/* Legend Section */}
         <div className="legend-container">
           <h2>Legend</h2>
-
           <h2 className="legend-title">Shift Colors</h2>
           <ul className="legend">
             <li><span className="color-box morning"></span> Morning (6am - 3pm)</li>

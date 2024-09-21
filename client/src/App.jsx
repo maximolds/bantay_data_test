@@ -1,5 +1,5 @@
-import { Fragment, useState, useEffect } from "react";
-import "./App.css";
+import { useState, useEffect } from "react";
+import "./App.css"; // Ensure this imports your scoped styles
 import { BrowserRouter as Router, Route, Routes, Link, useLocation, useNavigate } from "react-router-dom";
 import About from "./About";
 import LoginComponent from "./LoginComponent";
@@ -23,7 +23,7 @@ function AppContent() {
   // State to manage theme
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedMode = localStorage.getItem("isDarkMode");
-    return savedMode === "true" || false; // Default to light mode
+    return savedMode === "true"; // Default to light mode
   });
 
   useEffect(() => {
@@ -40,21 +40,27 @@ function AppContent() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
 
   return (
-    <Fragment>
+    <div className="app-root"> {/* Added the scoped class */}
       {location.pathname !== "/login" && (
-        <header className="app-header">
+        <header className="app-header" style={{
+          background: isDarkMode 
+            ? 'rgba(0, 0, 0, 0.5)' 
+            : 'linear-gradient(135deg, rgba(0, 100, 0, 0.8), rgba(0, 0, 0, 0.8))', // Dark green to black gradient for light mode
+          boxShadow: isDarkMode ? '0 4px 10px rgba(0, 255, 0, 0.8)' : '0 4px 10px rgba(0, 0, 0, 0.6)',
+          color: isDarkMode ? '#ffffff' : '#ffffff', // Text color
+        }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <Link to="/">
               <img src={logo} alt="Bantay Data Logo" style={{ height: '60px' }} />
             </Link>
             <nav>
-              <Link to="/" style={{ margin: '0 10px' }}>Home</Link>
-              <Link to="/about" style={{ margin: '0 10px' }}>About Us</Link>
-              <Link to="/registration" style={{ margin: '0 10px' }}>Register</Link>
+              <Link to="/" style={{ margin: '0 10px', color: isDarkMode ? '#ffffff' : '#ffffff' }}>Home</Link>
+              <Link to="/about" style={{ margin: '0 10px', color: isDarkMode ? '#ffffff' : '#ffffff' }}>About Us</Link>
+              <Link to="/registration" style={{ margin: '0 10px', color: isDarkMode ? '#ffffff' : '#ffffff' }}>Register</Link>
               {isAuthenticated ? (
-                <Link to="/" onClick={handleLogout} className="logout">Logout</Link>
+                <Link to="/" onClick={handleLogout} className="logout" style={{ color: isDarkMode ? '#ffffff' : '#ffffff' }}>Logout</Link>
               ) : (
-                <Link to="/login">Login</Link>
+                <Link to="/login" style={{ color: isDarkMode ? '#ffffff' : '#ffffff' }}>Login</Link>
               )}
               {/* Button to toggle dark mode */}
               <button onClick={() => setIsDarkMode(prev => !prev)} style={{ marginLeft: '10px' }}>
@@ -74,7 +80,7 @@ function AppContent() {
           </Route>
         </Routes>
       </div>
-    </Fragment>
+    </div>
   );
 }
 
