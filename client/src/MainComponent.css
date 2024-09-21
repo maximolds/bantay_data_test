@@ -1,17 +1,164 @@
-.title {
-    font-weight: bold;
-  }
-  
-  .values {
-    margin-top: 20px;
-    background: yellow;
-  }
-  
-  .value {
-    margin-top: 10px;
-    border-top: 1px dashed black;
-  }
-  
-  .form {
-    margin-top: 20px;
-  }  
+/* General body and text styling */
+body {
+  background-color: #1c1c1c;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+/* Navbar styling */
+.navbar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start; /* Align buttons to the left */
+  gap: 10px; /* Adds space between buttons */
+}
+
+.navbar button {
+  background-color: #04b400;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navbar button:hover {
+  background-color: white;
+  color: #04b400;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+}
+
+/* Main container and content layout */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; /* Distributes the table and calendar evenly */
+}
+
+.table-container {
+  flex: 3;
+  margin-right: 20px;
+}
+
+.calendar-container {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  text-align: left;
+  transition: background-color 0.3s;
+}
+
+th {
+  background-color: rgba(0, 255, 0, 0.2);
+  color: #04b400;
+  cursor: pointer;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+tr:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Error message styling */
+.error {
+  color: #ff4d4d;
+  margin-bottom: 16px;
+}
+
+/* Headings styling */
+h1, h2 {
+  color: #fff;
+}
+
+/* Legend container and items styling */
+.legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+/* Shift colors */
+.morning {
+  background-color: #00bfff; /* Light blue for morning shift */
+}
+
+.mid {
+  background-color: #ffa500; /* Orange for mid shift */
+}
+
+.night {
+  background-color: #9400d3; /* Purple for night shift */
+}
+
+.day-off {
+  background-color: #f0e68c; /* Khaki for day off */
+}
+
+.half-day {
+  background-color: #87ceeb; /* Sky blue for half day */
+}
+
+.sick-day {
+  background-color: #ff6347; /* Tomato for sick day */
+}
+
+/* Additional styling for table buttons under header */
+.table-buttons {
+  margin-bottom: 15px;
+}
+
+.table-buttons button {
+  background-color: #04b400;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.table-buttons button:hover {
+  background-color: white;
+  color: #04b400;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+}

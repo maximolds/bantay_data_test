@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate, Link } from "react-router-dom"; // Import useNavigate and Link
 import "./LoginComponent.css"; // Optional: Add your styles
 
 const LoginComponent = () => {
@@ -34,24 +34,29 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-component">
       <h2>Login</h2>
       {errorMessage && <div className="error">{errorMessage}</div>}
-      <form onSubmit={handleLogin}>
-        <label>Username:</label>
+      <form onSubmit={handleLogin} className="login-form">
+        <label htmlFor="username">Username:</label>
         <input
           type="text"
+          id="username"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         />
-        <label>Password:</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
+          id="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
         <button type="submit">Login</button>
       </form>
+      <div className="register-link">
+        <Link to="/registration">Don't have an account? Register here</Link>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import "./RegistrationComponent.css"
 
 const RegistrationComponent = () => {
   const [username, setUsername] = useState("");
@@ -52,9 +53,9 @@ const RegistrationComponent = () => {
   );
 
   return (
-    <div className="container">
+    <div className="registration-component">
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="registration-form">
         <div className="form-group">
           <label>Username</label>
           <input
