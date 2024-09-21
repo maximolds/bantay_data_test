@@ -50,8 +50,11 @@ function AppContent() {
           color: isDarkMode ? '#ffffff' : '#ffffff', // Text color
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Link to="/">
+            <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
               <img src={logo} alt="Bantay Data Logo" style={{ height: '60px' }} />
+              <span style={{ marginLeft: '10px', fontSize: '20px', fontWeight: 'bold', color: '#ffffff' }}>
+                Opswerks Bataan Batch 6
+              </span>
             </Link>
             <nav>
               <Link to="/" style={{ margin: '0 10px', color: isDarkMode ? '#ffffff' : '#ffffff' }}>Home</Link>
