@@ -31,6 +31,10 @@ body.light-mode .registration-form select {
   border: 2px solid #ccc; /* Optional: Set border color for inputs and dropdowns */
 }
 
+body.light-mode .registration-form label {
+  color: #000; /* Set label color to black in light mode */
+}
+
 /* Dark Mode Styles */
 body.dark-mode .registration-component {
   background-color: rgba(0, 0, 0, 0.85);
@@ -40,6 +44,10 @@ body.dark-mode .registration-component {
 body.dark-mode .registration-form input,
 body.dark-mode .registration-form select {
   color: white; /* Change text color to white for dark mode */
+}
+
+body.dark-mode .registration-form label {
+  color: white; /* Keep label color white in dark mode */
 }
 
 /* Registration Form Container */
